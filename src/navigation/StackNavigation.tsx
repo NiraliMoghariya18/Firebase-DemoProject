@@ -8,6 +8,8 @@ import SignUp from '../screens/SignUp';
 import Details from '../screens/Details';
 import { RootStackParamList } from '../utils/navigationType';
 import { Initializing } from '../../App';
+import PhoneSignIn from '../screens/PhoneSignIn';
+import PhoneVerification from '../screens/PhoneVerification';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -103,6 +105,11 @@ const StackNavigation = () => {
     return (
       <>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {/* <Stack.Screen
+            name="PhoneVerification"
+            component={PhoneVerification}
+          />
+          <Stack.Screen name="PhoneSignIn" component={PhoneSignIn} /> */}
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
         </Stack.Navigator>

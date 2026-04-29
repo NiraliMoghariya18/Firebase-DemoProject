@@ -48,16 +48,6 @@ const SignUp = () => {
       });
   };
 
-  // const handleSignUp = () => {
-  //   createUserWithEmailAndPassword(auth as any, email, password)
-  //     .then(() => {
-  //       Alert.alert('Success', 'Account created! Please sign in.');
-  //       // Redirect to Sign-In screen
-  //       navigation.navigate('Login');
-  //     })
-  //     .catch(error => Alert.alert('Error', error.message));
-  // };
-
   const signUp = () => {
     navigation.navigate('SignUp');
   };
