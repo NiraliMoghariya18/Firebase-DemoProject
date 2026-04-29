@@ -1,45 +1,26 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useState, useEffect, useContext, createContext } from 'react';
+import auth from '@react-native-firebase/auth';
+import { Button, Text, View } from 'react-native';
+import Login from './src/screens/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigation from './src/navigation/StackNavigation';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+interface MyContextType {
+  isInitializing: boolean;
+  setIsInitializing: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const Initializing = createContext<MyContextType | null>(null);
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [isInitializing, setIsInitializing] = useState(false);
 
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
+    <Initializing.Provider value={{ isInitializing, setIsInitializing }}>
+      <NavigationContainer>
+        <StackNavigation />
+      </NavigationContainer>
+    </Initializing.Provider>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
 export default App;
+export const useBoolean = () => useContext(Initializing);

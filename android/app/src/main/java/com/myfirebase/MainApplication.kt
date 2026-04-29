@@ -1,4 +1,4 @@
-package com.myfirebase
+package com.firebase.project
 
 import android.app.Application
 import com.facebook.react.PackageList
