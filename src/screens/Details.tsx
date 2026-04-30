@@ -7,7 +7,9 @@ const Details = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome {user?.email}</Text>
+      <Text style={styles.text}>
+        Welcome {user?.email} {user?.uid}
+      </Text>
 
       <Button title="Logout" onPress={() => auth().signOut()} />
     </View>

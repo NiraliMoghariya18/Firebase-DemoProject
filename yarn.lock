@@ -2001,6 +2001,16 @@
   dependencies:
     plist "^3.1.0"
 
+"@react-native-firebase/database@^24.0.0":
+  version "24.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/database/-/database-24.0.0.tgz#6725b9f422481d7cf470cf0df0efe7db60fa819b"
+  integrity sha512-Rn1pDLTme2Yr21lyFoi207YQCnC8IxR4chqMpvBbJzQ219IgesdFknuN11/v47mDVGBb4Fqiz5khTYhwfFqOZQ==
+
+"@react-native-firebase/storage@^24.0.0":
+  version "24.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/storage/-/storage-24.0.0.tgz#2cb3e0193debf9dd247f1a795344890f9ac57522"
+  integrity sha512-ZK5hZR13aYdEEpxhLztI1VqkTV5raXFqvmcX8EUwOc3Bs3n/WsLth7sylQCeANohuXjBvnUgP+ejrmrbKmn26A==
+
 "@react-native-google-signin/google-signin@^16.1.2":
   version "16.1.2"
   resolved "https://registry.yarnpkg.com/@react-native-google-signin/google-signin/-/google-signin-16.1.2.tgz#fe22dd4672f6fd1559e6a3fc27811ab5359de2ba"

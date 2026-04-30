@@ -4,4 +4,11 @@ export type RootStackParamList = {
   Details: undefined;
   PhoneSignIn: undefined;
   PhoneVerification: undefined;
+  Anonymous: undefined;
+  RealTimeDatabase: undefined;
+  CreateData?: {
+    item?: any;
+    isEdit?: boolean;
+  };
+  CreateDataDetails: undefined;
 };

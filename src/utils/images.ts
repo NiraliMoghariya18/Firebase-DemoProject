@@ -5,4 +5,7 @@ export const images = {
   google: require('../assets/images/google.png'),
   signUp: require('../assets/images/sign-up.png'),
   back: require('../assets/images/back.png'),
+  add: require('../assets/images/add.png'),
+  bin: require('../assets/images/bin.png'),
+  write: require('../assets/images/write.png'),
 };

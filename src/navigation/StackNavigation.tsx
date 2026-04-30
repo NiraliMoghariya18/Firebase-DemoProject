@@ -8,13 +8,16 @@ import SignUp from '../screens/SignUp';
 import Details from '../screens/Details';
 import { RootStackParamList } from '../utils/navigationType';
 import { Initializing } from '../../App';
-import PhoneSignIn from '../screens/PhoneSignIn';
 import PhoneVerification from '../screens/PhoneVerification';
+import PhoneSignIn from '../screens/PhoneSignIn';
+import Anonymous from '../screens/Anonymous';
+import RealTimeDatabase from '../screens/RealTimeDatabase';
+import CreateData from '../screens/CreateData';
+import CreateDataDetails from '../screens/CreateDataDetails';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const StackNavigation = () => {
-  const [isLoading, setsLoading] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
   // const useBoolean = () => useContext(Initializing);
   // console.log('useBoolean :>> ', useBoolean);
@@ -26,9 +29,14 @@ const StackNavigation = () => {
   // console.log(isInitializing, 'isInitializing');
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(async userState => {
+      console.log('userState :>> ', userState);
       const newState = userState;
-      console.log('userState 111:>> ', userState);
-      console.log('newState 111:>> ', newState);
+      // console.log('userState 111:>> ', userState);
+      // console.log('newState 111:>> ', newState);
+      if (user) {
+        console.log('User UID:', user.uid);
+        console.log('Is Anonymous:', user.isAnonymous);
+      }
       // if (userState) {
       //   console.log('userState :>> ', userState);
       //   try {
@@ -95,6 +103,12 @@ const StackNavigation = () => {
     return (
       <>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {/* <Stack.Screen name="RealTimeDatabase" component={RealTimeDatabase} /> */}
+          <Stack.Screen
+            name="CreateDataDetails"
+            component={CreateDataDetails}
+          />
+          <Stack.Screen name="CreateData" component={CreateData} />
           <Stack.Screen name="Details" component={Details} />
         </Stack.Navigator>
       </>
@@ -105,6 +119,7 @@ const StackNavigation = () => {
     return (
       <>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {/* <Stack.Screen name="Anonymous" component={Anonymous} /> */}
           {/* <Stack.Screen
             name="PhoneVerification"
             component={PhoneVerification}
