@@ -39,9 +39,7 @@ const Login = () => {
     await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
 
     const signInResult = await GoogleSignin.signIn();
-    console.log(signInResult, 'signInResult');
     let idToken = signInResult.data?.idToken;
-    console.log(idToken, 'idToken');
     if (!idToken) {
       throw new Error('No ID token found');
     }
@@ -49,17 +47,14 @@ const Login = () => {
     const googleCredential = GoogleAuthProvider.credential(
       signInResult.data?.idToken,
     );
-    console.log(googleCredential, 'googleCredential');
 
     return signInWithCredential(getAuth(), googleCredential);
   }
 
   const handleSignIn = () => {
-    console.log('email, password :>> ', email, password);
     auth()
       .signInWithEmailAndPassword(email, password)
       .catch(error => Alert.alert('Invalid credentials'));
-    console.log('email, password :>> ', email, password);
     // navigation.navigate('Details');
   };
 

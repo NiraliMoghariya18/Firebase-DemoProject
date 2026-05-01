@@ -8,9 +8,10 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 
 // create a component
-const CreateData = () => {
+const AddData = () => {
   const [name, setName] = useState('');
   const [surName, setSurName] = useState('');
   const [age, setAge] = useState('');
@@ -18,47 +19,70 @@ const CreateData = () => {
   const route = useRoute();
   const params = route.params as { isEdit: boolean; item: any } | undefined;
   const editItem = params?.item;
-  const isEdit = params?.isEdit && editItem?.id;
+  console.log('editItem :>> ', editItem);
+  const isEdit = params?.isEdit && editItem?.key;
 
-  const createItem = async (
-    name: string,
-    age: string,
-    { surName, age: secondaryAge }: { surName: string; age: string },
-  ) => {
+  //   const createItem = async (
+  //     name: string,
+  //     age: string,
+  //     { surName, age: secondaryAge }: { surName: string; age: string },
+  //   ) => {
+  //     try {
+  //       const newReference = database().ref('users').push();
+
+  //       if (params?.isEdit) {
+  //         console.log('isEdit====== :>> ', isEdit);
+  //         console.log('editItem.id====== :>> ', editItem.id);
+  //         await database().ref(`/users/${editItem.id}`).update({
+  //           name,
+  //           age,
+  //           data: {
+  //             surName,
+  //             secondaryAge,
+  //           },
+  //         });
+  //       } else {
+  //         await newReference.set({
+  //           name,
+  //           age,
+  //           data: {
+  //             surName,
+  //             secondaryAge,
+  //           },
+  //         });
+  //       }
+  //       navigation.goBack();
+  //       console.log('User created with key:', newReference);
+  //     } catch (error) {
+  //       console.error('Error creating user:', error);
+  //     }
+  //   };
+
+  const createItem = async (name: string, age: string) => {
     try {
-      const newReference = database().ref('users').push();
-
       if (params?.isEdit) {
-        await database().ref(`/users/${editItem.id}`).update({
+        await firestore().collection('Users').doc(editItem.key).update({
           name,
           age,
-          data: {
-            surName,
-            secondaryAge,
-          },
+          //   createdAt: firestore.FieldValue.serverTimestamp(),
         });
       } else {
-        await newReference.set({
+        await firestore().collection('Users').add({
           name,
           age,
-          data: {
-            surName,
-            secondaryAge,
-          },
+          createdAt: firestore.FieldValue.serverTimestamp(),
         });
       }
       navigation.goBack();
-      console.log('User created with key:', newReference);
     } catch (error) {
-      console.error('Error creating user:', error);
+      console.error(error);
     }
   };
-
   useEffect(() => {
     if (isEdit) {
       setAge(editItem?.age);
       setName(editItem?.name);
-      setSurName(editItem?.data?.surName);
+      //   setSurName(editItem?.data?.surName);
     }
     // return setAge(''), setName(''), setSurName('');
   }, []);
@@ -71,12 +95,12 @@ const CreateData = () => {
         value={name}
         onChangeText={setName}
       />
-      <TextInput
+      {/* <TextInput
         placeholder="Enter your surname"
         style={styles.input}
         value={surName}
         onChangeText={setSurName}
-      />
+      /> */}
       <TextInput
         placeholder="Enter your age"
         style={styles.input}
@@ -86,7 +110,7 @@ const CreateData = () => {
       <Button
         title="Submit"
         onPress={() => {
-          createItem(name, age, { surName, age });
+          createItem(name, age);
         }}
       />
     </View>
@@ -109,4 +133,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateData;
+export default AddData;

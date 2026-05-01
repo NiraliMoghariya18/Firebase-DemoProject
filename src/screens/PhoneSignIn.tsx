@@ -30,7 +30,6 @@ function PhoneSignIn() {
 
   // Handle the button press
   async function handleSignInWithPhoneNumber(phoneNumber: any) {
-    console.log('phoneNumber :>> ', phoneNumber);
     const confirmation = await signInWithPhoneNumber(getAuth(), phoneNumber);
     setConfirm(confirmation);
   }
@@ -38,9 +37,7 @@ function PhoneSignIn() {
   async function confirmCode() {
     try {
       await confirm.confirm(code);
-    } catch (error) {
-      console.log('Invalid code.');
-    }
+    } catch (error) {}
   }
 
   if (!confirm) {

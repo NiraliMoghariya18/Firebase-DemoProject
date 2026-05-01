@@ -11,4 +11,9 @@ export type RootStackParamList = {
     isEdit?: boolean;
   };
   CreateDataDetails: undefined;
+  AddData?: {
+    item: any;
+    isEdit: boolean;
+  };
+  AddDataDetails: undefined;
 };

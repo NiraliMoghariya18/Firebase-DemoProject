@@ -14,6 +14,8 @@ import Anonymous from '../screens/Anonymous';
 import RealTimeDatabase from '../screens/RealTimeDatabase';
 import CreateData from '../screens/CreateData';
 import CreateDataDetails from '../screens/CreateDataDetails';
+import AddData from '../screens/AddData';
+import AddDataDetails from '../screens/AddDataDetails';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -104,11 +106,19 @@ const StackNavigation = () => {
       <>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {/* <Stack.Screen name="RealTimeDatabase" component={RealTimeDatabase} /> */}
-          <Stack.Screen
+
+          {/* realtime database example screens */}
+
+          {/* <Stack.Screen
             name="CreateDataDetails"
             component={CreateDataDetails}
           />
-          <Stack.Screen name="CreateData" component={CreateData} />
+          <Stack.Screen name="CreateData" component={CreateData} /> */}
+
+          {/* realtime database example screens */}
+
+          <Stack.Screen name="AddDataDetails" component={AddDataDetails} />
+          <Stack.Screen name="AddData" component={AddData} />
           <Stack.Screen name="Details" component={Details} />
         </Stack.Navigator>
       </>

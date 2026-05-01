@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -40,7 +40,6 @@ const CreateDataDetails = () => {
   }, []);
 
   function onHandleNavigation() {
-    console.log('data :>> ');
     navigation.navigate('CreateData');
   }
 
@@ -70,31 +69,46 @@ const CreateDataDetails = () => {
         data={dataList}
         keyExtractor={item => item.id}
         renderItem={({ item }: { item: any }) => {
-          console.log('item :>> ', item);
           const data = item.data;
           return (
-            <View style={{ padding: 10, backgroundColor: 'pink' }}>
-              <TouchableOpacity onPress={() => deleteUser(item?.id)}>
-                <Image
-                  source={images.bin}
-                  style={styles.deleteImage}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => handleEdit(item)}>
-                <Image
-                  source={images.write}
-                  style={styles.deleteImage}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
+            <View
+              style={{
+                padding: 10,
+                backgroundColor: 'pink',
+                margin: rh(10),
+                borderRadius: rw(10),
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'flex-end',
+                  gap: rw(5),
+                  marginHorizontal: rw(10),
+                }}
+              >
+                <TouchableOpacity onPress={() => handleEdit(item)}>
+                  <Image
+                    source={images.write}
+                    style={styles.deleteImage}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => deleteUser(item?.id)}>
+                  <Image
+                    source={images.bin}
+                    style={styles.deleteImage}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              </View>
               <Text>Name: {item.name}</Text>
               <Text>SurName: {data?.surName}</Text>
               <Text>Age: {item.age}</Text>
             </View>
           );
         }}
-        contentContainerStyle={{ gap: rh(10) }}
+        // contentContainerStyle={{ gap: rh(10) }}
       />
       <TouchableOpacity
         style={{
